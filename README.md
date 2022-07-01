@@ -9,11 +9,11 @@ NextJS offers the following routing features
 | Route Feature | Description |
 | - | - |
 | File-based routes | NextJS projects come with a `pages` folder. Each page of the site gets a `page.js` file within this folder. |
-| Dynamic routes | # |
-| Automatic lazy loading | # |
-| Internationalization support | # |
-| Redirects | # |
-| Middleware | # |
+| Dynamic routes | NextJS allows app developers to pass dynamic routes by putting route place holder data in the file name under the `pages` folder. |
+| Automatic lazy loading | NextJS only loads the page that is requested by default. |
+| Internationalization support | International tags and redirects can be specified in the `next.config.js` file |
+| Redirects | Redirects are handled in the `next.config.js` file. |
+| Middleware | Middileware code can be added to a `_middleware.js` |
 
 # File-Based Routing
 
@@ -44,6 +44,42 @@ pages
 ```
 
 In the file layout above, `[id]` would represent the numbers `1`,`2`,`3` in any URL request made to your NextJS app.
+
+# API Routes
+
+If you wish, you can also take advantage of NextJS built-in API routes. Like the `pages` folder, NextJS utilizes a folder called `api` to store API route definitions.
+
+If you are using NextJS's built-in API routes, they will become accessible once you create a coresponding API file, and call for the file at `/api` in your URL requests.
+
+##### Example Code
+
+```jsx
+export deafault function handler(req, res) : void {
+    const products = [
+        {id: 1, name: "Pencil"},
+        {id: 1, name: "Pen"}
+    ];
+    res.status(200).json(products);
+}
+```
+
+<b>HOW TO RENDER: </b> `www.example.com/api/products`
+
+Simply save the above code into a file called `products.js` underneath the directory `api`.
+
+```
+api
+├── products.js
+```
+
+Visiting the above URL will return the following payload.
+
+```json
+[
+    {id: 1, name: "Pencil"},
+    {id: 1, name: "Pen"}
+]
+```
 
 # Appendix
 
